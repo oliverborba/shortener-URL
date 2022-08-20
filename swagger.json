@@ -1,0 +1,176 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Encurtador de Links",
+    "description": "API Criada para a disciplina Desenvolvimento Back-End para Aplicações Mobile da Pós Unyleya ",
+    "version": "1.0.0"
+  },
+  "host": "urlshortenerunyleya.herokuapp.com",
+  "basePath": "/",
+  "tags": [{
+    "name": "shortener",
+    "description": "Operações relacionadas aos links"
+    
+  }],
+  "schemes" : ["https"],
+  "consumes" : ["application/json"],
+  "produces" : ["application/json"],
+  
+    "paths": {
+      "/": {
+        "get": {
+          "tags": [
+            "shortener"
+          ],
+          "summary": "Retorna a página inicial",
+          "description": "Retorna a página inicial",
+          "operationId": "getHome",
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Erro",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      
+      },
+      "/short/{id}": {
+        "get": {
+          "tags": [
+            "shortener"
+          ],
+          "summary": "Buscar link a partir do ID",
+          "description": "Retorna o link encurtado a partir do ID fornecido",
+          "operationId": "getShort",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID do link encurtado",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "schema": {
+                "message": "string",
+                "shortUrl": "string",
+                "seedUrl": "string"
+              }
+            },
+            "400": {
+              "description": "Erro",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "/short": {
+        "post": {
+          "tags": [
+            "shortener"
+          ],
+          "summary": "Encurtar o link",
+          "description": "Encurta o link fornecido no body ",
+          "operationId": "postShort",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "name": "url",
+              "in": "body",
+              "description": "Link a ser encurtado",
+              "required": true,
+              "type": "object",
+              "default": {
+                "url": "https://portalaluno.unyleya.edu.br/login?_gl=1*e37mc6*_gcl_aw*R0NMLjE2NjA5OTAzNjQuQ2owS0NRandqSUtZQmhDNkFSSXNBR0Vkcy1LUmVSZ0VhRFZnNUEwUkxaRlRlWkRWZ2xmV1o3bVZyRHBoRXZUOVlWd0RKdlJwNm5nWUlQb2FBaGh2RUFMd193Y0I.&_ga=2.215903761.70043282.1660946588-1204549452.1660946588&_gac=1.61865310.1660990364.Cj0KCQjwjIKYBhC6ARIsAGEds-KReRgEaDVg5A0RLZFTeZDVglfWZ7mVrDphEvT9YVwDJvRp6ngYIPoaAhhvEALw_wcB"
+              }
+              
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "schema": {
+                 "message": "string",
+                 "urlId": "string",
+                 "shortUrl": "string"
+              },
+              "properties": {
+                "url" : "string"
+              }
+            },
+            "201": {
+              "description":"URL já encurtada",
+              "schema":{
+                "message": "string",
+                "urlId": "string"
+              }
+            },
+            "404": {
+              "description":"Not found",
+              "schema":{
+                "message": "string"
+              }
+            },
+            "400": {
+              "description": "Erro",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "/shortenedAt/{date}": {
+        "get": {
+          "tags": [
+            "shortener"
+          ],
+          "summary": "Retorna os links encurtados por data",
+          "description": "Retorna os links encurtados por data no formato YYYY-MM-DD",
+          "operationId": "getShortenedAt",
+          "parameters": [
+            {
+              "name": "date",
+              "in": "path",
+              "description": "Data do link encurtado",
+              "required": true,
+              "type": "string",
+              "default": "2022-08-20"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "schema": {
+                "message" : "string",
+                "urls": [
+                  {"_id":"string","seedUrl":"string","shortUrl":"string","createdAt":"string","urlId":"string","__v":"number"}
+                ]
+              }
+            },
+            "404": {
+              "description": "Erro",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+  }
+    
+  
+}
