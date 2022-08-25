@@ -5,10 +5,10 @@
     "description": "API Criada para a disciplina Desenvolvimento Back-End para Aplicações Mobile da Pós Unyleya ",
     "version": "1.0.0"
   },
-  "host": "urlshortenerunyleya.herokuapp.com",
+  "host": "shortenerurlunyleya.herokuapp.com",
   "basePath": "/",
   "tags": [{
-    "name": "shortener",
+    "name": "shortenerurlunyleya",
     "description": "Operações relacionadas aos links"
     
   }],
